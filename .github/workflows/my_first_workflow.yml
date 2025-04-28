@@ -1,16 +1,19 @@
 name: My First Action
-on: [pull_request]
+on: [push,pull_request]
 jobs:
   exempel:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: print push success
+      - name: print PR success
         run: echo "pull request sucssesful!"
 
+# en kommetar
   print:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: print files
-        run: ls -R
+      - name: print Push success
+        run: echo "push detected"
